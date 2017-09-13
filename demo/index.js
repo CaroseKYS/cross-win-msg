@@ -28,7 +28,7 @@ $(function () {
       msgContainer.prepend($('<div class="alert alert-warning">' + 
                           (new Date()).toLocaleString() + ' 收到回复: ' + JSON.stringify(data) + '</div>'));
     },
-    100)
+    5000)
   });
 
 })
