@@ -10,18 +10,20 @@
   var msgRelatedIdProp = '__cross-win-reply-msg-id__';
   var msgTimeout       = 1000 * 60 * 5;
 
+  var api = {
+    sendMsg          : sendMsg,
+    onMsg            : onMsg,
+    setDefaultTimeout: setDefaultTimeout
+  };
+
   if (jQuery) {
     $.extend({
-      cwmsg: {
-        sendMsg          : sendMsg,
-        onMsg            : onMsg,
-        setDefaultTimeout: setDefaultTimeout
-      }
+      cwmsg: api
     });
   }else if (false) {
 
   }else{
-
+    window.cwmsg = api;
   }
 
   /*初始化*/
@@ -54,12 +56,17 @@
         msg.target = window;
   
         receivedMsgs[msg.id] = msg;
+
+        msg.timer = setTimeout(function () {
+          delete receivedMsgs[msg.id];
+        }, msgTimeout);
   
         for (var i = 0, len = onMsgCallbacks.length; i < len; i++) {
           onMsgCallbacks[i](msg.data, function(data){
             msg.reply(data);
           });
         }
+
       });
     })();
 
@@ -153,6 +160,7 @@
         this.target =  this.source;
         this.relatedId = this.id;
         this.send();
+        clearTimeout(this.timer);
         delete receivedMsgs[this.id];
       };
     }

@@ -1,5 +1,6 @@
 $(function(){
   var msgContainer = $('#msg-container');
+  var childName = location.href.replace(/(\d)\.html$/, '$1').replace(/^.*?(child-\d)$/, '$1');
 
   $.cwmsg.onMsg(function(msg, reply){
 
@@ -7,7 +8,7 @@ $(function(){
                           (new Date()).toLocaleString() + ' 收到消息: ' + JSON.stringify(msg) + '</div>'));
 
     setTimeout(function () {
-      var r = 'Hello father, I get your message';
+      var r = 'Hello father, I am ' + childName +', I get your message';
       msgContainer.prepend($('<div class="alert alert-info">' + 
                           (new Date()).toLocaleString() + ' 回复消息: ' + r + '</div>'));
       reply(r);
@@ -16,7 +17,7 @@ $(function(){
 
   $('#msg-sender').on('click', function () {
     var msg = {
-      msg: 'hello father, you there?'
+      msg: 'hello father, you there? I am ' + childName +'.'
     };
 
     msgContainer.prepend($('<div class="alert alert-success">' + 
