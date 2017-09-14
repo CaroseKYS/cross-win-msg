@@ -8,6 +8,9 @@
 ### 作为jQuery插件
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script src="../cross-win-msg.js"></script>
+    <script>
+        var cwmsg = $.cwmsg;
+    </script>
 
 ### 作为CMD模块
     var cwmsg = require('../cross-win-msg.js');
@@ -19,9 +22,22 @@
 
 ### 作为普通页面插件
     <script src="../cross-win-msg.js"></script>
+    <script>
+        var cwmsg = window.cwmsg;
+    </script>
 
 
 ## 使用
+
+    cwmsg.setDefaultTimeout(10 * 6 * 1000);
+    cwmsg.onMsg(function(data, reply){
+      setTimeout(function(){
+        reply('****'); //回复的内容也可以是 json
+      }, 3000);
+    });
+    cwmsg.sendMsg(window.top, {'msg': 'hello'}, function(data){
+      console.log(data);
+    }, 5000);
 
 ### setDefaultTimeout
 + 方法说明: 设置消息的默认等待回复时间，如果收到的消息在默认的时间内没有被回复，则当前消息将从消息队列中删除，如果发送的消息在默认时间内没有得到回复，会得到一个 `{status:'ETIMEOUT'} ` 的回复。
@@ -37,7 +53,7 @@
 + 方法说明: 增加当前页面的消息监听器。
 
 + 参数列表: 
-    * listener: `Function` 类型，**必选参数**，收到消息时的回调函数。
+    * listener: `Function` 类型，**必选参数**，收到消息时的回调函数。`listener` 被调用时会传入两个参数，第一个参数为收到的消息，第二个参数为回复消息的方法`reply`，当 `reply` 方法被调用时，消息的发送方就能得到回复。
 
 + 返回值
     * 类型: `Object`
