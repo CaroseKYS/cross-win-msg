@@ -103,6 +103,8 @@
     }
 
     msg.send();
+
+    return api;
   };
 
   /**
