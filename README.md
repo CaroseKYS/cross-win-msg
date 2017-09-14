@@ -11,6 +11,6 @@
 
 ## 使用
 
-**setDefaultTimeout**
-**onMsg**
-**sendMsg**
+### setDefaultTimeout
+### onMsg
+### sendMsg
