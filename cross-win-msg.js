@@ -20,8 +20,14 @@
     $.extend({
       cwmsg: api
     });
-  }else if (false) {
-
+  }else if(typeof define === 'function' && define.cmd) {
+    define('cwmsg', [], function(require, exports, module) {
+      module.exports = api;
+    });
+  }else if(typeof define === "function" && define.amd){
+    define( "cwmsg", [], function() {
+      return api;
+    });
   }else{
     window.cwmsg = api;
   }
