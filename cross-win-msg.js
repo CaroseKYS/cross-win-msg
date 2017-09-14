@@ -109,15 +109,24 @@
    * 添加事件间听
    * @author 康永胜
    * @date   2017-09-12T18:08:19+0800
-   * @param  {Function}               callback [description]
-   * @return {[type]}                          [description]
+   * @param  {Function}               callback [消息监听器]
+   * @return {Object}                          [返回接口本身，方便链式调用]
    */
   function onMsg (callback) {
     callback && onMsgCallbacks.push(callback);
+    return api;
   };
 
+  /**
+   * 设定消息的默认过期时间
+   * @author 康永胜
+   * @date   2017-09-14T16:34:04+0800
+   * @param  {Number}                 time [需要设置的超时时间]
+   * @return {Object}                      [返回接口本身，方便链式调用]
+   */
   function setDefaultTimeout(time){
     msgTimeout = time;
+    return api;
   }
 
   /**
