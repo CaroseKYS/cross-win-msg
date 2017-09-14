@@ -21,7 +21,7 @@
       cwmsg: api
     });
   }else if(typeof define === 'function' && define.cmd) {
-    define('cwmsg', [], function(require, exports, module) {
+    define(function(require, exports, module) {
       module.exports = api;
     });
   }else if(typeof define === "function" && define.amd){
