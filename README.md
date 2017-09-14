@@ -8,7 +8,7 @@
 
 ## 引入
 
-### 作为jQuery插件
+### 作为jQuery扩展插件
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script src="../cross-win-msg.js"></script>
     <script>
@@ -23,7 +23,7 @@
       //....
     });
 
-### 作为普通页面插件
+### 作为页面全局插件
     <script src="../cross-win-msg.js"></script>
     <script>
         var cwmsg = window.cwmsg;
@@ -32,7 +32,7 @@
 
 ## 使用
 
-    cwmsg.setDefaultTimeout(10 * 6 * 1000);
+    cwmsg.setDefaultTimeout(10 * 60 * 1000);
 
     cwmsg.onMsg(function(data, reply){
       setTimeout(function(){
@@ -45,10 +45,10 @@
     }, 5000);
 
 ### setDefaultTimeout
-+ 方法说明: 设置消息的默认等待回复时间，如果收到的消息在默认的时间内没有被回复，则当前消息将从消息队列中删除，如果发送的消息在默认时间内没有得到回复，会得到一个 `{status:'ETIMEOUT'} ` 的回复。
++ 方法说明: 设置消息的默认等待回复时间，如果收到的消息在默认的时间内没有被回复，则当前消息将从消息队列中删除，如果发送的消息在默认时间内没有得到回复，会得到一个 `{status:'ETIMEOUT'} ` 的回复。如果不设置，则等待时间默认为 **300000ms**，即 **5分钟**。
 
 + 参数列表:
-    * time: `Function` 类型，**必选参数**，默认的等待时间，单位：ms。
+    * time: `Function` 类型，**必选参数**，消息等待回复的时间，单位：ms。
 
 + 返回值
     * 类型: `Object`
