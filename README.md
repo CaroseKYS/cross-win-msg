@@ -1,7 +1,10 @@
 # cross-win-msg
-多窗口之间的消息通信组件，可以实现跨域窗口之间的通信。
 
-兼容 chrome Firefox IE8+ Safari等主流浏览器
+该插件（模块）用于实现多个（跨域）窗口之间的 **有状态** 的消息通信功能。
+
+## 浏览器兼容
+
+该插件（模块）兼容 `chrome`、`Firefox`、`IE8+`、`Safari` 等众多主流浏览器。
 
 ## 引入
 
@@ -30,11 +33,13 @@
 ## 使用
 
     cwmsg.setDefaultTimeout(10 * 6 * 1000);
+
     cwmsg.onMsg(function(data, reply){
       setTimeout(function(){
         reply('****'); //回复的内容也可以是 json
       }, 3000);
     });
+
     cwmsg.sendMsg(window.top, {'msg': 'hello'}, function(data){
       console.log(data);
     }, 5000);
