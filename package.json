@@ -1,0 +1,19 @@
+{
+  "name": "cross-win-msg",
+  "version": "1.0.0",
+  "description": "该插件（模块）用于实现多个（跨域）窗口之间的 **有状态** 的消息通信功能。",
+  "main": "cross-win-msg.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CaroseKYS/cross-win-msg.git"
+  },
+  "author": "kangys",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CaroseKYS/cross-win-msg/issues"
+  },
+  "homepage": "https://github.com/CaroseKYS/cross-win-msg#readme"
+}
